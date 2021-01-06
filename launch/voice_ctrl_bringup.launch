@@ -1,0 +1,6 @@
+<launch>
+    <arg name="robot_name" value="robot" />
+
+    <node name="mojo_speech_recognition" pkg="ros_voice_ctrl_pkg" type="mojo_speech_recognition.py" output="screen" args="$(arg robot_name)" />
+
+</launch>
