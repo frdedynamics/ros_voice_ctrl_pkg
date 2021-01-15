@@ -1,3 +1,5 @@
+.idea/*
+venv/*
 devel/
 logs/
 build/
