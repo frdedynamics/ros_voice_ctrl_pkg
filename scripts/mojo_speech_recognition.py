@@ -23,7 +23,7 @@ def talker():
             RECORDING.adjust_for_ambient_noise(source)
             print("Please Say something:")
             try:
-                audio = RECORDING.listen(source, timeout=2)
+                audio = RECORDING.listen(source, phrase_time_limit=2)
                 speech_recognized = RECORDING.recognize_google(audio)
 
             except sr.WaitTimeoutError as e:
