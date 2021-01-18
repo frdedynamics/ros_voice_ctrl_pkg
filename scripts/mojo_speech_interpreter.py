@@ -3,20 +3,24 @@
 import rospy
 import rosservice
 from std_msgs.msg import String
+from record_ros.srv import String_cmd
 
 
 def callback(data):
     """ docsctring, yo! """
-    rospy.loginfo(rospy.get_caller_id() + "I heard %s", data.data)
+    rospy.loginfo(rospy.get_caller_id() + " I heard %s", data.data)
 
     spoken = data.data
-
+    
+    
     if spoken == 'record':
-        rosservice.call_service("record_ros", ['record'])
+	rospy.loginfo(rospy.get_caller_id() + " Rosbag record command.")
+	CMD("record")
     elif spoken == 'stop':
-        rosservice.call_service("record_ros", ['stop'])
+	rospy.loginfo(rospy.get_caller_id() + " Rosbag stop command.")
+	CMD("stop")
     else:
-        rospy.loginfo("Nothing interpreted..")
+        rospy.loginfo(rospy.get_caller_id() + " Nothing interpreted..")
 
 
 def listener():
@@ -28,4 +32,8 @@ def listener():
 
 
 if __name__ == '__main__':
+    print "Waiting for record ros service.."
+    rospy.wait_for_service('/record/cmd')
+    print "The wait is over."
+    CMD = rospy.ServiceProxy('/record/cmd', String_cmd)
     listener()
