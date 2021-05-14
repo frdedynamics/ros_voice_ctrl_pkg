@@ -13,10 +13,10 @@ def callback(data):
     spoken = data.data
     
     
-    if spoken == 'record':
+    if spoken == 'robot record':
 	rospy.loginfo(rospy.get_caller_id() + " Rosbag record command.")
 	CMD("record")
-    elif spoken == 'stop':
+    elif spoken == 'robot stop':
 	rospy.loginfo(rospy.get_caller_id() + " Rosbag stop command.")
 	CMD("stop")
     else:
